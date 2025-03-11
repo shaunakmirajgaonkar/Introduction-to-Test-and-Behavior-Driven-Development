@@ -1,0 +1,17 @@
+Feature: Product Management
+
+  Scenario: Delete an existing product
+    Given the following products exist
+      | id | name       | category  | available | price  |
+      | 1  | Laptop     | Electronics | true  | 75000  |
+      | 2  | Headphones | Accessories | true  | 2000   |
+
+    When I search for a product with name "Laptop"
+    Then I should see a "Success" message
+    And the product field "price" should contain "75000"
+
+    When I copy the product Id, clear the form, paste the Id, and press Delete
+    Then I should see a "Product has been Deleted!" message
+
+    When I press the Clear button and search for "Laptop"
+    Then the product should not appear in the results
