@@ -1,0 +1,18 @@
+Feature: Product Management
+
+  Scenario: Search for a product by name
+    Given the following products exist
+      | id | name    | category    | available | price  |
+      | 1  | Hat     | Accessories | true      | 500    |
+      | 2  | Shoes   | Footwear    | true      | 3000   |
+      | 3  | Big Mac | Food        | false     | 200    |
+      | 4  | Sheets  | Home        | true      | 1000   |
+
+    When I press the Clear button
+    And I enter "Shoes" in the Name field
+    And I press the Search button
+    Then I should see a "Success" message
+    And I should see "Shoes" in the results
+    And I should not see "Hat" in the results
+    And I should not see "Big Mac" in the results
+    And I should not see "Sheets" in the results
