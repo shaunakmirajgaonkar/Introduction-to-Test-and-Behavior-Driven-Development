@@ -1,0 +1,22 @@
+Feature: Product Management
+
+  Scenario: Update an existing product
+    Given the following products exist
+      | id | name       | category  | available | price  |
+      | 1  | Laptop     | Electronics | true  | 75000  |
+      | 2  | Headphones | Accessories | true  | 2000   |
+
+    When I search for a product with name "Laptop"
+    Then I should see a "Success" message
+    And the product field "price" should contain "75000"
+
+    When I update the "price" field to "72000"
+    And I press the Update button
+    Then I should see a "Success" message
+
+    When I copy the product Id, clear the form, paste the Id, and press Retrieve
+    Then I should see a "Success" message
+    And the product field "price" should contain "72000"
+
+    When I press the Clear button and search for "Laptop"
+    Then the product "price" should be "72000"
