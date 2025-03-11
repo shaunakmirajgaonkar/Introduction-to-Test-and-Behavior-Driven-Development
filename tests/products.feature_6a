@@ -1,0 +1,12 @@
+Feature: Product Management
+
+  Scenario: Read an existing product
+    Given the following products exist
+      | name       | category  | available | price  |
+      | Laptop     | Electronics | true  | 75000  |
+      | Headphones | Accessories | true  | 2000   |
+
+    When I send a GET request to "/products/1"
+    Then the response status code should be 200
+    And the response should contain "Laptop"
+    And the response should contain "Electronics"
